@@ -12,6 +12,48 @@
   </head>
 
   <body>
+
+    <nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">URL</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <% if current_user.nil? %>
+    <ul class="right">
+      
+      <li class="has-dropdown">
+        <a href="#">Sign in</a>
+        <ul class="dropdown">
+          <li><a href="/sign-up">Create Account</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+      </li>
+    </ul>
+<% end %>
+
+<% if current_user %>
+    <ul class="right">
+      
+      <li class="has-dropdown">
+        <a href="#">Account</a>
+        <ul class="dropdown">
+          <li><a data-method="delete" rel="nofollow" href="/logout">Logout</a></li>
+        </ul>
+      </li>
+    </ul>
+<% end %>
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li><a href="#">Left Nav Button</a></li>
+    </ul>
+  </section>
+</nav>
 <% flash.each do |name, message| %>
 
   <%= content_tag :div, message, class: "alert alert-#{name}" %>

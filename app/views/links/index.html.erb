@@ -1,0 +1,30 @@
+
+
+<div class="row">
+
+<h1>Your links </h1>
+<h2><small><%= link_to "Add New Link", new_link_path %></small></h2>
+
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Slug</th>
+    <th>Target URL</th>
+    <th>Created At</th>
+    <th colspan="2">Actions</th>
+    <th>Visits</th>
+  </tr>
+  <% @links.each do |link| %>
+    <tr>
+      <td><%= link_to link.slug, link_path(link.id) %></td>
+      <td><%= link_to link.target_url, link_path(link.id) %></td>
+      <td><%= link_to link.created_at, link_path(link.id) %></td>
+      <td><%= link_to "Edit", edit_link_path(link.id) %></td> <td><%= link_to "Delete", link_path(link.id), :method => "delete", :data => {:confirm => "Are you sure you would like to delete the link: #{link.slug}?"} %>  </td>
+      <td><%= link.visit_count %></td>
+
+    </tr>
+  <% end %>
+</table>
+
+
+
+</div>
